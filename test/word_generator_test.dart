@@ -1,12 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:word_generator/word_generator.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
+  test('randomNoun', () {
+    final wordGenerator = WordGenerator();
+    expect(wordGenerator.randomNoun(), isNotNull);
+  });
+
+  test('randomSentence', () {
+    final wordGenerator = WordGenerator();
+    expect(wordGenerator.randomSentence(), isNotNull);
+  });
+
+  test('countSyllables', () {
+    final wordGenerator = WordGenerator();
+    expect(wordGenerator.countSyllables('hello'), 2);
   });
 }
