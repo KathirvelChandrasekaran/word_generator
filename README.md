@@ -11,29 +11,61 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# word_generator
+
+[![pub package](https://img.shields.io/pub/v/random_words.svg)](https://pub.dartlang.org/packages/random_words)
+
+Utilities for generating random `Engligh Words`. As of now only English `nouns` are supported. In upcoming version, adjectives and verbs will be added.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- randomNouns
+- randomNoun
+- randomSentence
+- countSyllables
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Print 3 random nouns. Parameter is optional, if no param is provided then 2 noun will be generated.
 
 ```dart
-const like = 'sample';
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   List<String> nouns = WordGenerator().randomNouns(3);
+   print(nouns);
+}
 ```
 
-## Additional information
+Print single random noun.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   String noun = WordGenerator().randomNoun();
+   print(noun);
+}
+```
+
+Print sentence with the random nouns. Parameter is optional, if no param is provided then 2 noun will be generated.
+
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   List<String> noun = WordGenerator().randomSentence(3);
+   print(noun);
+}
+```
+
+Print count of the syllables in the word
+
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   int count = WordGenerator().countSyllables('dart');
+   print(count);
+}
+```

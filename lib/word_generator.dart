@@ -7,7 +7,7 @@ import 'package:word_generator/nouns.dart';
 class WordGenerator {
   /// Returns a list of random words.
   /// [count] is the number of words to return.
-  randomNouns([int count = 1]) {
+  randomNouns([int count = 2]) {
     final random = Random();
     final nouns = <String>[];
     for (var i = 0; i < count; i++) {

@@ -12,7 +12,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   helloFunction() {
-    var data = WordGenerator().countSyllables('kathirvel');
+    List<String> data = WordGenerator().countSyllables('kathirvel');
     print(data);
   }
 

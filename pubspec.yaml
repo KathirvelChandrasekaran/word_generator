@@ -1,6 +1,6 @@
 name: word_generator
 description: A dart package for generating random words.
-version: 0.1.0
+version: 0.0.1
 homepage: https://github.com/KathirvelChandrasekaran/word_generator
 
 environment:
