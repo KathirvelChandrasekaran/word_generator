@@ -3,11 +3,12 @@ library word_generator;
 import 'dart:math';
 
 import 'package:word_generator/nouns.dart';
+import 'package:word_generator/verbs.dart';
 
 class WordGenerator {
   /// Returns a list of random words.
   /// [count] is the number of words to return.
-  randomNouns([int count = 2]) {
+  List<String> randomNouns([int count = 2]) {
     final random = Random();
     final nouns = <String>[];
     for (var i = 0; i < count; i++) {
@@ -21,14 +22,14 @@ class WordGenerator {
   }
 
   /// Returns a random noun.
-  randomNoun() {
+  String randomNoun() {
     final random = Random();
     return nouns[random.nextInt(nouns.length)];
   }
 
   /// Returns a random sentence.
   /// [count] is the number of nouns to return.
-  randomSentence([int count = 2]) {
+  String randomSentence([int count = 2]) {
     final random = Random();
     var sentence = '';
     for (var i = 0; i < count; i++) {
@@ -39,7 +40,7 @@ class WordGenerator {
 
   /// count the syllables in a noun
   /// [noun] is the noun to count the syllables in.
-  countSyllables(String noun) {
+  int countSyllables(String noun) {
     var count = 0;
     var vowels = 'aeiouy';
     noun = noun.toLowerCase().trim();
@@ -64,5 +65,27 @@ class WordGenerator {
       count++;
     }
     return count;
+  }
+
+  /// Returns a list of random verbs.
+  /// [count] is the number of words to return.
+  List<String> randomVerbs([int count = 2]) {
+    final random = Random();
+    final verbsRes = <String>[];
+    for (var i = 0; i < count; i++) {
+      var verb = '';
+      for (var j = 0; j < count; j++) {
+        verb += verbs[random.nextInt(verbs.length)];
+      }
+      verbsRes.add(verb);
+    }
+    return verbsRes;
+  }
+
+  /// Returns a random verb.
+  /// [count] is the number of words to return.
+  String randomVerb() {
+    final random = Random();
+    return verbs[random.nextInt(verbs.length)];
   }
 }

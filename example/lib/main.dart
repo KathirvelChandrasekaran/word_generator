@@ -12,8 +12,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   helloFunction() {
-    List<String> data = WordGenerator().countSyllables('kathirvel');
-    print(data);
+    WordGenerator wordGenerator = WordGenerator();
+    print(wordGenerator.randomVerb());
   }
 
   @override

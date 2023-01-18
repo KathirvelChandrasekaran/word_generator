@@ -17,14 +17,14 @@ and the Flutter guide for
 
 Utilities for generating random `Engligh Words`. As of now only English `nouns` are supported. In upcoming version, adjectives and verbs will be added.
 
-## Features
+## 🚀 Features
 
 - randomNouns
 - randomNoun
 - randomSentence
 - countSyllables
 
-## Usage
+## 🎮 Usage
 
 Print 3 random nouns. Parameter is optional, if no param is provided then 2 noun will be generated.
 
@@ -32,7 +32,8 @@ Print 3 random nouns. Parameter is optional, if no param is provided then 2 noun
 import 'package:word_generator/word_generator.dart';
 
 main() {
-   List<String> nouns = WordGenerator().randomNouns(3);
+   WordGenerator wordGenerator = WordGenerator();
+   List<String> nouns = wordGenerator.randomNouns(3);
    print(nouns);
 }
 ```
@@ -43,7 +44,8 @@ Print single random noun.
 import 'package:word_generator/word_generator.dart';
 
 main() {
-   String noun = WordGenerator().randomNoun();
+   WordGenerator wordGenerator = WordGenerator();
+   String noun = wordGenerator.randomNoun();
    print(noun);
 }
 ```
@@ -54,7 +56,8 @@ Print sentence with the random nouns. Parameter is optional, if no param is prov
 import 'package:word_generator/word_generator.dart';
 
 main() {
-   List<String> noun = WordGenerator().randomSentence(3);
+   WordGenerator wordGenerator = WordGenerator();
+   List<String> noun = wordGenerator.randomSentence(3);
    print(noun);
 }
 ```
@@ -65,7 +68,32 @@ Print count of the syllables in the word
 import 'package:word_generator/word_generator.dart';
 
 main() {
-   int count = WordGenerator().countSyllables('dart');
+   WordGenerator wordGenerator = WordGenerator();
+   int count = wordGenerator.countSyllables('dart');
    print(count);
+}
+```
+
+Print 3 random verbs. Parameter is optional, if no param is provided then 2 noun will be generated.
+
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   WordGenerator wordGenerator = WordGenerator();
+   List<String> verbs = wordGenerator.randomVerbs(3);
+   print(verbs);
+}
+```
+
+Print single random verb.
+
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   WordGenerator wordGenerator = WordGenerator();
+   String verb = wordGenerator.randomVerb();
+   print(verb);
 }
 ```
