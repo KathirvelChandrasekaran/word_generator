@@ -15,7 +15,7 @@ and the Flutter guide for
 
 [![pub package](https://img.shields.io/pub/v/random_words.svg)](https://pub.dartlang.org/packages/random_words)
 
-Utilities for generating random `Engligh Words`. As of now only English `nouns` are supported. In upcoming version, adjectives and verbs will be added.
+Utilities for generating random `Engligh Words`. Generate random `nouns`and `verbs`
 
 ## 🚀 Features
 
@@ -23,6 +23,8 @@ Utilities for generating random `Engligh Words`. As of now only English `nouns` 
 - randomNoun
 - randomSentence
 - countSyllables
+- randomVerbs
+- randomVerb
 
 ## 🎮 Usage
 
@@ -97,3 +99,7 @@ main() {
    print(verb);
 }
 ```
+
+## 😅 Issue
+
+If you face any issues, please raise an [issue](https://github.com/KathirvelChandrasekaran/word_generator/issues).
