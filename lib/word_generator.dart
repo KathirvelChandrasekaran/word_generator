@@ -2,8 +2,9 @@ library word_generator;
 
 import 'dart:math';
 
-import 'package:word_generator/nouns.dart';
-import 'package:word_generator/verbs.dart';
+import 'package:word_generator/data/names.dart';
+import 'package:word_generator/data/nouns.dart';
+import 'package:word_generator/data/verbs.dart';
 
 class WordGenerator {
   /// Returns a list of random words.
@@ -87,5 +88,26 @@ class WordGenerator {
   String randomVerb() {
     final random = Random();
     return verbs[random.nextInt(verbs.length)];
+  }
+
+  /// Returns a random names.
+  /// [count] is the number of words to return.
+  List<String> randomNames([int count = 2]) {
+    final random = Random();
+    final namesRes = <String>[];
+    for (var i = 0; i < count; i++) {
+      var name = '';
+      for (var j = 0; j < count; j++) {
+        name += names[random.nextInt(names.length)];
+      }
+      namesRes.add(name);
+    }
+    return namesRes;
+  }
+
+  /// Returns a random name.
+  String randomName() {
+    final random = Random();
+    return names[random.nextInt(names.length)];
   }
 }

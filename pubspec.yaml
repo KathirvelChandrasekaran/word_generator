@@ -1,6 +1,6 @@
 name: word_generator
-description: A dart util package for generating random nouns and verbs. This package helps you to generate random words for your project without any hassle.
-version: 0.0.2
+description: A dart based util package for generating random nouns, verbs and names. This package helps you to generate random words for your project without any hassle.
+version: 0.0.3
 homepage: https://github.com/KathirvelChandrasekaran/word_generator
 
 environment:

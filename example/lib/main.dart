@@ -12,8 +12,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   helloFunction() {
-    WordGenerator wordGenerator = WordGenerator();
-    print(wordGenerator.randomVerb());
+    final wordGenerator = WordGenerator();
+    print(wordGenerator.randomName());
   }
 
   @override
