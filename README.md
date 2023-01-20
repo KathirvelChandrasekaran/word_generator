@@ -1,19 +1,30 @@
 # word_generator
 
-[![pub package](https://img.shields.io/pub/v/random_words.svg)](https://pub.dartlang.org/packages/random_words)
+[![pub package](https://img.shields.io/pub/v/random_words.svg)](https://pub.dev/packages/word_generator)
 
 Utilities for generating random `Engligh Words`. Generate random `nouns`,`verbs` and `names`.
 
 ## 🚀 Features
 
+### nouns
+
 - randomNouns
 - randomNoun
 - randomSentence
-- countSyllables
+
+### verbs
+
 - randomVerbs
 - randomVerb
+
+### names
+
 - randomNames
 - nandomName
+
+### common util
+
+- countSyllables
 
 ## 🎮 Usage
 
