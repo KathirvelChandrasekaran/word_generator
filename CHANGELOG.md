@@ -13,3 +13,7 @@ Util function to generate `names`
 ## 0.3.1
 
 Updated versioning and readme
+
+## 0.3.2
+
+Updated  readme

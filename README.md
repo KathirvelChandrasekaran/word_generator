@@ -1,6 +1,6 @@
 # word_generator
 
-[![pub package](https://img.shields.io/pub/v/random_words.svg)](https://pub.dev/packages/word_generator)
+[![pub package](https://img.shields.io/pub/v/word_generator.svg)](https://pub.dev/packages/word_generator)
 
 Utilities for generating random `Engligh Words`. Generate random `nouns`,`verbs` and `names`.
 
