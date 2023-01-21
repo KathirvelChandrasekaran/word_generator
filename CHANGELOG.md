@@ -17,3 +17,7 @@ Updated versioning and readme
 ## 0.3.2
 
 Updated  readme
+
+## 0.4.0
+
+Util function to generate and validate `password`

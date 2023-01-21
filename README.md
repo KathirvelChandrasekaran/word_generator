@@ -2,9 +2,11 @@
 
 [![pub package](https://img.shields.io/pub/v/word_generator.svg)](https://pub.dev/packages/word_generator)
 
-Utilities for generating random `Engligh Words`. Generate random `nouns`,`verbs` and `names`.
+A dart based util package for generating random `nouns`, `verbs`, `names`, `strong password` and `validate the given password` is strong or not. This package helps you to generate random words and passwords for your project without any hassle.
 
 ## 🚀 Features
+
+<hr/>
 
 ### nouns
 
@@ -26,7 +28,44 @@ Utilities for generating random `Engligh Words`. Generate random `nouns`,`verbs`
 
 - countSyllables
 
+### password
+
+- generatePassword
+- validatePassword
+
 ## 🎮 Usage
+
+<hr/>
+
+### generatePassword
+
+Generate a random 8 digit password. If no length is provided then default length is taken as 8.
+
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   final passwordGenerator = PasswordGenerator();
+   String password = passwordGenerator.generatePassword();
+   print(password)
+}
+```
+
+### validatePassword
+
+Check the given string is strong password or not.
+
+```dart
+import 'package:word_generator/word_generator.dart';
+
+main() {
+   final passwordGenerator = PasswordGenerator();
+   bool password = passwordGenerator.validatePassword('abcABC123!@#');
+   print(password)
+}
+```
+
+### randomNouns
 
 Print 3 random nouns. Parameter is optional, if no param is provided then 2 noun will be generated.
 
@@ -40,6 +79,8 @@ main() {
 }
 ```
 
+### randomNoun
+
 Print single random noun.
 
 ```dart
@@ -51,6 +92,8 @@ main() {
    print(noun);
 }
 ```
+
+### randomSentence
 
 Print sentence with the random nouns. Parameter is optional, if no param is provided then 2 noun will be generated.
 
@@ -64,6 +107,8 @@ main() {
 }
 ```
 
+### countSyllables
+
 Print count of the syllables in the word
 
 ```dart
@@ -75,6 +120,8 @@ main() {
    print(count);
 }
 ```
+
+### randomVerbs
 
 Print 3 random verbs. Parameter is optional, if no param is provided then 2 noun will be generated.
 
@@ -88,6 +135,8 @@ main() {
 }
 ```
 
+### randomVerb
+
 Print single random verb.
 
 ```dart
@@ -100,6 +149,8 @@ main() {
 }
 ```
 
+### randomNames
+
 Print 3 random names. Parameter is optional, if no param is provided then 2 noun will be generated.
 
 ```dart
@@ -111,6 +162,8 @@ main() {
    print(names);
 }
 ```
+
+### randomName
 
 Print single random name.
 

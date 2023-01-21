@@ -14,6 +14,9 @@ class _MyAppState extends State<MyApp> {
   helloFunction() {
     final wordGenerator = WordGenerator();
     print(wordGenerator.randomName());
+
+    final password = PasswordGenerator();
+    print(password.validatePassword('abcABC123!@#'));
   }
 
   @override
