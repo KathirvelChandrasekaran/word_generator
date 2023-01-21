@@ -6,8 +6,6 @@ A dart based util package for generating random `nouns`, `verbs`, `names`, `stro
 
 ## 🚀 Features
 
-<hr/>
-
 ### nouns
 
 - randomNouns
@@ -34,8 +32,6 @@ A dart based util package for generating random `nouns`, `verbs`, `names`, `stro
 - validatePassword
 
 ## 🎮 Usage
-
-<hr/>
 
 ### generatePassword
 
