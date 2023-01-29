@@ -1,11 +1,10 @@
 name: word_generator
 description: A dart based util package for generating random nouns, verbs, names, strong password and validate the given password is strong or not.
-version: 0.4.1
+version: 0.4.2
 homepage: https://github.com/KathirvelChandrasekaran/word_generator
 
 environment:
-  sdk: ">=2.18.6 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
   flutter:

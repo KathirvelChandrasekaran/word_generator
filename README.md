@@ -1,6 +1,9 @@
-# word_generator
+# Word Generator
 
-[![pub package](https://img.shields.io/pub/v/word_generator.svg)](https://pub.dev/packages/word_generator)
+[![pub package][pub_badge]][pub_link]
+[![License: MIT][license_badge]][license_link]
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/kathirvel)
 
 A dart based util package for generating random `nouns`, `verbs`, `names`, `strong password` and `validate the given password` is strong or not. This package helps you to generate random words and passwords for your project without any hassle.
 
@@ -176,3 +179,8 @@ main() {
 ## 😅 Issue
 
 If you face any issues, please raise an [issue](https://github.com/KathirvelChandrasekaran/word_generator/issues).
+
+[license_link]: https://opensource.org/licenses/MIT
+[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[pub_badge]: https://img.shields.io/pub/v/word_generator.svg
+[pub_link]: https://pub.dev/packages/word_generator
