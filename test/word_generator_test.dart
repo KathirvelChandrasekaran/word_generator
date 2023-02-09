@@ -16,4 +16,9 @@ void main() {
     final wordGenerator = WordGenerator();
     expect(wordGenerator.countSyllables('hello'), 2);
   });
+
+  test('randomNouns', () {
+    final wordGenerator = WordGenerator();
+    expect(wordGenerator.randomNouns(5).length, 5);
+  });
 }
