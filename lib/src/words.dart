@@ -5,22 +5,18 @@ import 'package:word_generator/data/nouns.dart';
 import 'package:word_generator/data/verbs.dart';
 
 class WordGenerator {
-  /// Returns a list of random words.
-  /// [count] is the number of words to return.
+  /// Returns a list of random nouns.
+  /// [count] is the number of nouns to return.
   List<String> randomNouns([int count = 2]) {
     if (count < 2) {
       throw Exception('Count must be at least 2');
     }
     final random = Random();
-    final nouns = <String>[];
+    final picked_nouns = <String>[];
     for (var i = 0; i < count; i++) {
-      var noun = '';
-      for (var j = 0; j < count; j++) {
-        noun += nouns[random.nextInt(nouns.length)];
-      }
-      nouns.add(noun);
+      picked_nouns.add(randomNoun());
     }
-    return nouns;
+    return picked_nouns;
   }
 
   /// Returns a random noun.
