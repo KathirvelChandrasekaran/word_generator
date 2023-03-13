@@ -11,12 +11,11 @@ class WordGenerator {
     if (count < 2) {
       throw Exception('Count must be at least 2');
     }
-    final random = Random();
-    final picked_nouns = <String>[];
+    final pickedNouns = <String>[];
     for (var i = 0; i < count; i++) {
-      picked_nouns.add(randomNoun());
+      pickedNouns.add(randomNoun());
     }
-    return picked_nouns;
+    return pickedNouns;
   }
 
   /// Returns a random noun.
