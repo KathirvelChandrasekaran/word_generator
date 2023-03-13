@@ -29,3 +29,7 @@ Readme update
 ## 0.4.2
 
 Readme update
+
+## 0.4.3
+
+Bugfixes
