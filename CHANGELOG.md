@@ -33,3 +33,7 @@ Readme update
 ## 0.4.3
 
 Bugfixes
+
+## 0.4.4
+
+Bugfixes
