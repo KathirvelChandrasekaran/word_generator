@@ -9,7 +9,7 @@ class PasswordGenerator {
     }
 
     var password = '';
-    var random = Random();
+    var random = Random.secure();
     var characters =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#%^&*()';
     for (var i = 0; i < length; i++) {
