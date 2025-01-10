@@ -3,6 +3,7 @@ import 'dart:math';
 class PasswordGenerator {
   String generatePassword([
     double length = 8,
+    List<String>? exceptionCharacters,
   ]) {
     if (length < 8) {
       throw Exception('Password must be at least 8 characters long');
@@ -12,6 +13,11 @@ class PasswordGenerator {
     var random = Random.secure();
     var characters =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#%^&*()';
+    if (exceptionCharacters != null) {
+      for (String character in exceptionCharacters) {
+        characters = characters.replaceAll(character, '');
+      }
+    }
     for (var i = 0; i < length; i++) {
       password += characters[random.nextInt(characters.length)];
     }
