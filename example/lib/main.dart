@@ -17,6 +17,15 @@ class _MyAppState extends State<MyApp> {
 
     final password = PasswordGenerator();
     print(password.validatePassword('abcABC123!@#'));
+
+    final generatePassword = PasswordGenerator();
+    final generatePassword1 = PasswordGenerator();
+    try {
+      print(generatePassword.generatePassword(6));
+      print(generatePassword1.generatePassword(8, ['@']));
+    } catch (err) {
+      print(err);
+    }
   }
 
   @override
