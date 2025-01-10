@@ -37,3 +37,7 @@ Bugfixes
 ## 0.4.4
 
 Bugfixes
+
+## 0.4.5
+
+Added option to exclude characters during password generation
