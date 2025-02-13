@@ -76,11 +76,7 @@ class WordGenerator {
     final random = Random();
     final verbsRes = <String>[];
     for (var i = 0; i < count; i++) {
-      var verb = '';
-      for (var j = 0; j < count; j++) {
-        verb += verbs[random.nextInt(verbs.length)];
-      }
-      verbsRes.add(verb);
+      verbsRes.add(verbs[random.nextInt(verbs.length)]);
     }
     return verbsRes;
   }
@@ -101,11 +97,7 @@ class WordGenerator {
     final random = Random();
     final namesRes = <String>[];
     for (var i = 0; i < count; i++) {
-      var name = '';
-      for (var j = 0; j < count; j++) {
-        name += names[random.nextInt(names.length)];
-      }
-      namesRes.add(name);
+      namesRes.add(names[random.nextInt(names.length)]);
     }
     return namesRes;
   }
