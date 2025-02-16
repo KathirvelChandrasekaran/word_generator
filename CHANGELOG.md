@@ -41,3 +41,7 @@ Bugfixes
 ## 0.4.5
 
 Added option to exclude characters during password generation
+
+## 0.4.6
+
+Bugfixes for generating `randomNames` and `randomVerbs`
