@@ -19,11 +19,17 @@ A dart based util package for generating random `nouns`, `verbs`, `names`, `stro
 
 - randomVerbs
 - randomVerb
+- verbsStartingWith
+- verbsEndingWith
+- verbsContaining
 
 ### names
 
 - randomNames
 - nandomName
+- nounsStartingWith
+- nounsEndingWith
+- nounsContaining
 
 ### common util
 
