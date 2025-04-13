@@ -45,3 +45,7 @@ Added option to exclude characters during password generation
 ## 0.4.6
 
 Bugfixes for generating `randomNames` and `randomVerbs`
+
+## 0.5.0
+Added options to generate verbs and nouns based on given words.
+Methods newly added are `verbsStartingWith`, `verbsEndingWith`, `verbsContaining`, `nounsStartingWith`, `nounsEndingWith` and `nounsContaining`
