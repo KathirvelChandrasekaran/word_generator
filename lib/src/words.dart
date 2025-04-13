@@ -81,6 +81,78 @@ class WordGenerator {
     return verbsRes;
   }
 
+  // Fetch the verbs starting with the letter
+  /// [letter] is the letter to filter the verbs by.
+  List<String> verbsStartingWith(String letter) {
+    final filteredVerbs = <String>[];
+    for (var i = 0; i < verbs.length; i++) {
+      if (verbs[i].startsWith(letter)) {
+        filteredVerbs.add(verbs[i]);
+      }
+    }
+    return filteredVerbs;
+  }
+
+  // Fetch the verbs ending with the letter
+  /// [letter] is the letter to filter the verbs by.
+  List<String> verbsEndingWith(String letter) {
+    final filteredVerbs = <String>[];
+    for (var i = 0; i < verbs.length; i++) {
+      if (verbs[i].endsWith(letter)) {
+        filteredVerbs.add(verbs[i]);
+      }
+    }
+    return filteredVerbs;
+  }
+
+  // Fetch the verbs containing the letter
+  /// [letter] is the letter to filter the verbs by.
+  List<String> verbsContaining(String letter) {
+    final filteredVerbs = <String>[];
+    for (var i = 0; i < verbs.length; i++) {
+      if (verbs[i].contains(letter)) {
+        filteredVerbs.add(verbs[i]);
+      }
+    }
+    return filteredVerbs;
+  }
+
+  // Fetch the nouns starting with the letter
+  /// [letter] is the letter to filter the nouns by.
+  List<String> nounsStartingWith(String letter) {
+    final filteredNouns = <String>[];
+    for (var i = 0; i < nouns.length; i++) {
+      if (nouns[i].startsWith(letter)) {
+        filteredNouns.add(nouns[i]);
+      }
+    }
+    return filteredNouns;
+  }
+
+  // Fetch the nouns ending with the letter
+  /// [letter] is the letter to filter the nouns by.
+  List<String> nounsEndingWith(String letter) {
+    final filteredNouns = <String>[];
+    for (var i = 0; i < nouns.length; i++) {
+      if (nouns[i].endsWith(letter)) {
+        filteredNouns.add(nouns[i]);
+      }
+    }
+    return filteredNouns;
+  }
+
+  // Fetch the nouns containing the letter
+  /// [letter] is the letter to filter the nouns by.
+  List<String> nounsContaining(String letter) {
+    final filteredNouns = <String>[];
+    for (var i = 0; i < nouns.length; i++) {
+      if (nouns[i].contains(letter)) {
+        filteredNouns.add(nouns[i]);
+      }
+    }
+    return filteredNouns;
+  }
+
   /// Returns a random verb.
   /// [count] is the number of words to return.
   String randomVerb() {
