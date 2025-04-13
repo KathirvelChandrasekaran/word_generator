@@ -5,6 +5,20 @@
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/kathirvel)
 
+## 💡 Feature Requests
+
+I welcome feature requests to improve the `word_generator` package! If you have an idea for a new feature, follow these steps to submit your request:
+
+1. Visit the [Feature Requests Project](https://github.com/users/KathirvelChandrasekaran/projects/5/views/1).
+2. Click on the **"New Item"** button in the top-right corner.
+3. Provide a clear and concise title for your feature request.
+4. Add a detailed description of your idea, including:
+   - The problem it solves.
+   - How it would benefit users.
+   - Any additional context or examples.
+5. Submit your request, and we’ll review it as part of our development roadmap.
+
+
 A dart based util package for generating random `nouns`, `verbs`, `names`, `strong password` and `validate the given password` is strong or not. This package helps you to generate random words and passwords for your project without any hassle.
 
 ## 🚀 Features
@@ -190,3 +204,5 @@ If you face any issues, please raise an [issue](https://github.com/KathirvelChan
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [pub_badge]: https://img.shields.io/pub/v/word_generator.svg
 [pub_link]: https://pub.dev/packages/word_generator
+
+Thank you for contributing to the growth of `word_generator`!
