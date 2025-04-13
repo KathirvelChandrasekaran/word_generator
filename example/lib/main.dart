@@ -15,6 +15,24 @@ class _MyAppState extends State<MyApp> {
     final wordGenerator = WordGenerator();
     print(wordGenerator.randomName());
 
+    final wordGenerator1 = WordGenerator();
+    print(wordGenerator1.verbsStartingWith('arr'));
+
+    final wordGenerator2 = WordGenerator();
+    print(wordGenerator2.verbsEndingWith('ing'));
+
+    final wordGenerator3 = WordGenerator();
+    print(wordGenerator3.verbsContaining('sp'));
+
+    final wordGenerator4 = WordGenerator();
+    print(wordGenerator4.nounsStartingWith('arr'));
+
+    final wordGenerator5 = WordGenerator();
+    print(wordGenerator5.nounsEndingWith('ing'));
+
+    final wordGenerator6 = WordGenerator();
+    print(wordGenerator6.nounsContaining('sp'));
+
     final password = PasswordGenerator();
     print(password.validatePassword('abcABC123!@#'));
 
