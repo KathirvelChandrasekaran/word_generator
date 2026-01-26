@@ -1,0 +1,45 @@
+name: Publish to pub.dev
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., 0.5.1)"
+        required: true
+        type: string
+
+jobs:
+  publish:
+    permissions:
+      id-token: write # Required for authentication using OIDC
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze project source
+        run: dart analyze --fatal-infos
+
+      - name: Run tests
+        run: dart test
+
+      - name: Check publish warnings
+        run: dart pub publish --dry-run
+
+      - name: Confirm version
+        run: |
+          echo "Publishing version ${{ github.event.inputs.version }}"
+          echo "Make sure pubspec.yaml version matches!"
+
+      - name: Publish to pub.dev
+        run: dart pub publish --force
