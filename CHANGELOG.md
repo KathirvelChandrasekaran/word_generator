@@ -16,7 +16,7 @@ Updated versioning and readme
 
 ## 0.3.2
 
-Updated  readme
+Updated readme
 
 ## 0.4.0
 
@@ -47,5 +47,16 @@ Added option to exclude characters during password generation
 Bugfixes for generating `randomNames` and `randomVerbs`
 
 ## 0.5.0
+
 Added options to generate verbs and nouns based on given words.
-Methods newly added are `verbsStartingWith`, `verbsEndingWith`, `verbsContaining`, `nounsStartingWith`, `nounsEndingWith` and `nounsContaining`
+
+## 0.6.0
+
+- Enhanced password generation capabilities with custom options and passphrase support
+- Added enhanced word generation features including random names, usernames, and email generation
+- Refactored main app structure and enhanced UI for word generation features
+- Enhanced Word and Password Generator Tests with improved test coverage
+- Updated CI workflows for improved Dart and Flutter support
+- Updated README.md with enhanced features and usage examples
+- Fixed pubspec.yaml formatting and added test package dependency
+  Methods newly added are `verbsStartingWith`, `verbsEndingWith`, `verbsContaining`, `nounsStartingWith`, `nounsEndingWith` and `nounsContaining`
