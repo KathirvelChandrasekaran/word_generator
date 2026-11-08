@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:english_words/english_words.dart' as english_words;
 import 'package:word_generator/data/names.dart';
 import 'package:word_generator/data/nouns.dart';
 import 'package:word_generator/data/verbs.dart';
@@ -310,6 +311,7 @@ class WordGenerator {
   ///   'firstname-lastname', or 'word-word'. Defaults to 'adjective-noun'.
   /// - [separator]: Character to separate parts. Defaults to empty string.
   /// - [includeNumber]: Whether to append a random number. Defaults to false.
+  ///   The `noun-number` style always includes a number.
   /// - [capitalize]: Whether to capitalize each word. Defaults to false.
   ///
   /// Returns a username like 'HappyTiger42' or 'quick_fox_77'.
@@ -319,43 +321,48 @@ class WordGenerator {
     bool includeNumber = false,
     bool capitalize = false,
   }) {
-    String username;
-
+    late final List<String> parts;
+    var numberIncludedByStyle = false;
     switch (style) {
       case 'noun-number':
-        username = randomNoun();
+        parts = [
+          english_words.nouns[_random.nextInt(english_words.nouns.length)],
+          _random.nextInt(1000).toString(),
+        ];
+        numberIncludedByStyle = true;
         break;
       case 'firstname-lastname':
-        username = '${randomFirstName()}$separator${randomLastName()}';
-        if (!capitalize) {
-          username = username.toLowerCase();
-        }
-        if (includeNumber) {
-          username += separator + _random.nextInt(1000).toString();
-        }
-        return username;
+        parts = [randomFirstName(), randomLastName()];
+        break;
       case 'word-word':
-        username = '${randomNoun()}$separator${randomVerb()}';
+        parts = [randomNoun(), randomVerb()];
         break;
       case 'adjective-noun':
-      default:
-        // For simplicity, using noun-noun as adjective placeholder
-        username = '${randomNoun()}$separator${randomNoun()}';
+        parts = [
+          english_words
+              .adjectives[_random.nextInt(english_words.adjectives.length)],
+          english_words.nouns[_random.nextInt(english_words.nouns.length)],
+        ];
         break;
+      default:
+        throw ArgumentError.value(style, 'style', 'is not a supported style');
     }
 
-    if (capitalize) {
-      final parts = username.split(separator);
-      username = parts
-          .map((p) => p.isEmpty ? p : p[0].toUpperCase() + p.substring(1))
-          .join(separator);
+    final formattedParts = parts.map((part) {
+      if (capitalize) {
+        return part[0].toUpperCase() + part.substring(1);
+      }
+      if (style == 'firstname-lastname') {
+        return part.toLowerCase();
+      }
+      return part;
+    }).toList();
+
+    if (includeNumber && !numberIncludedByStyle) {
+      formattedParts.add(_random.nextInt(1000).toString());
     }
 
-    if (includeNumber) {
-      username += separator + _random.nextInt(1000).toString();
-    }
-
-    return username;
+    return formattedParts.join(separator);
   }
 
   /// Generates a fake email address for testing purposes.

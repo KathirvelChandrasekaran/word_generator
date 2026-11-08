@@ -1,3 +1,4 @@
+import 'package:english_words/english_words.dart' as english_words;
 import 'package:test/test.dart';
 import 'package:word_generator/data/names.dart' as names_data;
 import 'package:word_generator/data/nouns.dart' as nouns_data;
@@ -142,6 +143,34 @@ void main() {
       final wordGenerator = WordGenerator();
       final username = wordGenerator.generateUsername(separator: '_');
       expect(username.contains('_'), isTrue);
+    });
+
+    test('adjective-noun username uses the corresponding word lists', () {
+      final wordGenerator = WordGenerator(seed: 42);
+      final parts = wordGenerator.generateUsername(separator: '-').split('-');
+
+      expect(parts, hasLength(2));
+      expect(english_words.adjectives.contains(parts[0]), isTrue);
+      expect(english_words.nouns.contains(parts[1]), isTrue);
+    });
+
+    test('noun-number username includes a number by definition', () {
+      final wordGenerator = WordGenerator(seed: 42);
+      final username = wordGenerator.generateUsername(
+        style: 'noun-number',
+        separator: '-',
+      );
+
+      expect(RegExp(r'-\d+$').hasMatch(username), isTrue);
+    });
+
+    test('generateUsername rejects an unknown style', () {
+      final wordGenerator = WordGenerator();
+
+      expect(
+        () => wordGenerator.generateUsername(style: 'unknown'),
+        throwsArgumentError,
+      );
     });
 
     test('generateEmail returns valid email', () {
@@ -320,6 +349,19 @@ void main() {
       expect(password.contains('#'), isFalse);
     });
 
+    test('generatePassword rejects an empty character pool', () {
+      final passwordGenerator = PasswordGenerator();
+      const allCharacters = '${PasswordGenerator.lowercaseChars}'
+          '${PasswordGenerator.uppercaseChars}'
+          '${PasswordGenerator.numberChars}'
+          '${PasswordGenerator.specialChars}';
+
+      expect(
+        () => passwordGenerator.generatePassword(8, allCharacters.split('')),
+        throwsArgumentError,
+      );
+    });
+
     test('generateCustomPassword returns correct length', () {
       final passwordGenerator = PasswordGenerator();
       final password = passwordGenerator.generateCustomPassword(length: 16);
@@ -333,6 +375,18 @@ void main() {
         includeSpecial: false,
       );
       expect(RegExp(r'[!@#%^&*()]').hasMatch(password), isFalse);
+    });
+
+    test('generateCustomPassword includes every enabled character set', () {
+      final passwordGenerator = PasswordGenerator();
+
+      for (var i = 0; i < 20; i++) {
+        final password = passwordGenerator.generateCustomPassword(length: 4);
+        expect(RegExp(r'[a-z]').hasMatch(password), isTrue);
+        expect(RegExp(r'[A-Z]').hasMatch(password), isTrue);
+        expect(RegExp(r'[0-9]').hasMatch(password), isTrue);
+        expect(RegExp(r'[!@#%^&*()]').hasMatch(password), isTrue);
+      }
     });
   });
 
@@ -361,6 +415,37 @@ void main() {
       final passwordGenerator = PasswordGenerator();
       expect(() => passwordGenerator.generatePassphrase(wordCount: 2),
           throwsException);
+    });
+
+    test('generatePassphrase rejects an empty custom word list', () {
+      final passwordGenerator = PasswordGenerator();
+
+      expect(
+        () => passwordGenerator.generatePassphrase(customWordList: []),
+        throwsArgumentError,
+      );
+    });
+
+    test('generatePassphrase rejects empty words when capitalizing', () {
+      final passwordGenerator = PasswordGenerator();
+
+      expect(
+        () => passwordGenerator.generatePassphrase(
+          customWordList: ['word', ''],
+          capitalize: true,
+        ),
+        throwsArgumentError,
+      );
+    });
+
+    test('generatePassphrase uses the English word list by default', () {
+      final passwordGenerator = PasswordGenerator();
+      final passphrase = passwordGenerator.generatePassphrase(wordCount: 8);
+
+      expect(
+        passphrase.split('-').every(english_words.all.contains),
+        isTrue,
+      );
     });
   });
 
@@ -450,6 +535,7 @@ void main() {
       final label = passwordGenerator.entropyLabel('MyStr0ng!P@ss');
       expect(label, isNotNull);
       expect(label, isNotEmpty);
+      expect(label.toLowerCase(), isNot(contains('crack')));
     });
   });
 }

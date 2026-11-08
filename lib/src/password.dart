@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:english_words/english_words.dart' as english_words;
+
 /// A utility class for generating and validating passwords.
 class PasswordGenerator {
   /// Default character sets for password generation
@@ -13,7 +15,7 @@ class PasswordGenerator {
   static const String _vowels = 'aeiou';
 
   /// Default word list for passphrase generation
-  static const List<String> _defaultWordList = [
+  static const List<String> _additionalWordList = [
     'apple',
     'banana',
     'cherry',
@@ -122,6 +124,11 @@ class PasswordGenerator {
     'infinite',
   ];
 
+  static final List<String> _defaultWordList = {
+    ..._additionalWordList,
+    ...english_words.all,
+  }.toList(growable: false);
+
   /// Generates a random password.
   ///
   /// - [length]: The desired length of the password. Must be at least 8 characters.
@@ -134,15 +141,13 @@ class PasswordGenerator {
   /// Returns:
   /// - A randomly generated password string that meets the specified criteria.
   String generatePassword([
-    double length = 8,
+    int length = 8,
     List<String>? exceptionCharacters,
   ]) {
     if (length < 8) {
       throw Exception('Password must be at least 8 characters long');
     }
 
-    var password = '';
-    var random = Random.secure();
     var characters =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#%^&*()';
     if (exceptionCharacters != null) {
@@ -150,6 +155,16 @@ class PasswordGenerator {
         characters = characters.replaceAll(character, '');
       }
     }
+    if (characters.isEmpty) {
+      throw ArgumentError.value(
+        exceptionCharacters,
+        'exceptionCharacters',
+        'must leave at least one character available',
+      );
+    }
+
+    var password = '';
+    final random = Random.secure();
     for (var i = 0; i < length; i++) {
       password += characters[random.nextInt(characters.length)];
     }
@@ -163,10 +178,12 @@ class PasswordGenerator {
   /// - [includeUppercase]: Whether to include uppercase letters. Defaults to true.
   /// - [includeNumbers]: Whether to include numbers. Defaults to true.
   /// - [includeSpecial]: Whether to include special characters. Defaults to true.
-  /// - [customCharacters]: Additional custom characters to include.
+  /// - [customCharacters]: Additional characters available for the remaining slots.
+  ///
+  /// Includes at least one character from every enabled built-in set.
   ///
   /// Throws:
-  /// - `Exception` if the length is less than 4 or no character sets are selected.
+  /// - `Exception` if the length is less than 4 or the character pool is empty.
   ///
   /// Returns:
   /// - A randomly generated password string.
@@ -182,23 +199,30 @@ class PasswordGenerator {
       throw Exception('Password must be at least 4 characters long');
     }
 
-    var characters = '';
-    if (includeLowercase) characters += lowercaseChars;
-    if (includeUppercase) characters += uppercaseChars;
-    if (includeNumbers) characters += numberChars;
-    if (includeSpecial) characters += specialChars;
-    if (customCharacters != null) characters += customCharacters;
+    final requiredCharacterSets = <String>[];
+    if (includeLowercase) requiredCharacterSets.add(lowercaseChars);
+    if (includeUppercase) requiredCharacterSets.add(uppercaseChars);
+    if (includeNumbers) requiredCharacterSets.add(numberChars);
+    if (includeSpecial) requiredCharacterSets.add(specialChars);
+
+    final characters = [
+      ...requiredCharacterSets,
+      if (customCharacters != null) customCharacters,
+    ].join();
 
     if (characters.isEmpty) {
       throw Exception('At least one character set must be selected');
     }
-
-    var password = '';
-    var random = Random.secure();
-    for (var i = 0; i < length; i++) {
-      password += characters[random.nextInt(characters.length)];
+    final random = Random.secure();
+    final passwordCharacters = <String>[
+      for (final characterSet in requiredCharacterSets)
+        characterSet[random.nextInt(characterSet.length)],
+    ];
+    while (passwordCharacters.length < length) {
+      passwordCharacters.add(characters[random.nextInt(characters.length)]);
     }
-    return password;
+    passwordCharacters.shuffle(random);
+    return passwordCharacters.join();
   }
 
   /// Generates a memorable passphrase using random words.
@@ -213,6 +237,7 @@ class PasswordGenerator {
   ///
   /// Throws:
   /// - `Exception` if wordCount is less than 3.
+  /// - [ArgumentError] if the custom word list is empty or contains an empty word.
   ///
   /// Returns:
   /// - A passphrase string like "correct-horse-battery-staple".
@@ -228,6 +253,14 @@ class PasswordGenerator {
     }
 
     final wordList = customWordList ?? _defaultWordList;
+    if (wordList.isEmpty || wordList.any((word) => word.trim().isEmpty)) {
+      throw ArgumentError.value(
+        customWordList,
+        'customWordList',
+        'must contain at least one non-empty word',
+      );
+    }
+
     final random = Random.secure();
     final words = <String>[];
 
@@ -355,6 +388,9 @@ class PasswordGenerator {
   ///
   /// - [password]: The password string to evaluate.
   ///
+  /// This is a rough heuristic, not a security guarantee or a substitute for
+  /// a password estimator designed for human-chosen passwords.
+  ///
   /// Returns:
   /// - An integer score from 0 to 100.
   int passwordStrengthScore(String password) {
@@ -403,7 +439,9 @@ class PasswordGenerator {
   /// Calculates the entropy of a password in bits.
   ///
   /// Entropy is a measure of password unpredictability. Higher entropy
-  /// means a more secure password.
+  /// means a more secure password. This estimate assumes each character was
+  /// selected independently and uniformly from the inferred character pool;
+  /// it can overstate the entropy of human-chosen passwords.
   ///
   /// - [password]: The password string to evaluate.
   ///
@@ -433,13 +471,16 @@ class PasswordGenerator {
   /// - [password]: The password string to evaluate.
   ///
   /// Returns:
-  /// - A string describing the entropy level and estimated crack time.
+  /// - A qualitative label based on the estimated entropy.
+  ///
+  /// This is a rough estimate, not a crack-time prediction or security
+  /// guarantee. It assumes randomly generated characters.
   String entropyLabel(String password) {
     final entropy = calculateEntropy(password);
-    if (entropy < 28) return 'Very Weak (instantly crackable)';
-    if (entropy < 36) return 'Weak (crackable in minutes)';
-    if (entropy < 60) return 'Reasonable (crackable in hours/days)';
-    if (entropy < 128) return 'Strong (crackable in years)';
-    return 'Very Strong (practically uncrackable)';
+    if (entropy < 28) return 'Very Weak (estimated entropy)';
+    if (entropy < 36) return 'Weak (estimated entropy)';
+    if (entropy < 60) return 'Reasonable (estimated entropy)';
+    if (entropy < 128) return 'Strong (estimated entropy)';
+    return 'Very Strong (estimated entropy)';
   }
 }
