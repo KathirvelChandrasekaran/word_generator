@@ -281,10 +281,6 @@ Strength scores and entropy labels are rough heuristics, not security
 guarantees or crack-time predictions. Entropy assumes randomly generated
 characters and may overstate the strength of human-chosen passwords.
 
-## 🎨 Example App
-
-Check out the [example app](example/) for an interactive demo with all features organized in a clean UI.
-
 ## 🧪 Testing
 
 Run tests:
