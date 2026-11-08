@@ -1,3 +1,9 @@
+## 1.0.0
+
+- Improved password generation logic and expanded password tests.
+- Updated GitHub workflows and README for Dart usage.
+- Removed macOS and web platform files from the example Flutter app.
+
 ## 0.0.1
 
 Initial version with `nouns`.

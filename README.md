@@ -69,7 +69,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  word_generator: ^0.6.0
+  word_generator: ^1.0.0
 ```
 
 Then run:
