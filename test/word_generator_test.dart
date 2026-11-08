@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:word_generator/data/names.dart' as names_data;
 import 'package:word_generator/data/nouns.dart' as nouns_data;
 import 'package:word_generator/data/verbs.dart' as verbs_data;
