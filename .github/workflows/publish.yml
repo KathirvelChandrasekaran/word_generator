@@ -28,7 +28,7 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze project source
-        run: dart analyze --fatal-infos
+        run: dart analyze lib test --fatal-infos
 
       - name: Run tests
         run: dart test
@@ -37,9 +37,15 @@ jobs:
         run: dart pub publish --dry-run
 
       - name: Confirm version
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
         run: |
-          echo "Publishing version ${{ github.event.inputs.version }}"
-          echo "Make sure pubspec.yaml version matches!"
+          PACKAGE_VERSION="$(awk '$1 == "version:" { print $2; exit }' pubspec.yaml)"
+          if [[ "$REQUESTED_VERSION" != "$PACKAGE_VERSION" ]]; then
+            printf '::error::Requested version %s does not match pubspec.yaml version %s\n' "$REQUESTED_VERSION" "$PACKAGE_VERSION"
+            exit 1
+          fi
+          printf 'Publishing version %s\n' "$PACKAGE_VERSION"
 
       - name: Publish to pub.dev
         run: dart pub publish --force

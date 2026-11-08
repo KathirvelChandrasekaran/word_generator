@@ -240,6 +240,10 @@ passGen.generatePassphrase(
 );                                        // "Dragon_Castle_River_Phoenix_847"
 ```
 
+The default passphrase list includes the 5,000-word MIT-licensed list from
+[`english_words`](https://pub.dev/packages/english_words). You can provide a
+custom word list with `customWordList`.
+
 #### Special Password Types
 
 ```dart
@@ -261,17 +265,21 @@ passGen.validatePassword('password');                // false
 passGen.validatePassword('MyStr0ng!P@ss');          // true
 
 // Strength scoring (0-100)
-passGen.passwordStrengthScore('password');           // 20
-passGen.passwordStrengthScore('MyStr0ng!P@ssw0rd'); // 95
+passGen.passwordStrengthScore('password');           // 26
+passGen.passwordStrengthScore('MyStr0ng!P@ssw0rd'); // 100
 
 // Descriptive labels
 passGen.passwordStrengthLabel('password');           // "Weak"
 passGen.passwordStrengthLabel('MyStr0ng!P@ssw0rd'); // "Very Strong"
 
 // Entropy calculation
-passGen.calculateEntropy('MyStr0ng!P@ss');           // 72.4 bits
-passGen.entropyLabel('MyStr0ng!P@ss');               // "Strong (crackable in years)"
+passGen.calculateEntropy('MyStr0ng!P@ss');           // 85.2 bits
+passGen.entropyLabel('MyStr0ng!P@ss');               // "Strong (estimated entropy)"
 ```
+
+Strength scores and entropy labels are rough heuristics, not security
+guarantees or crack-time predictions. Entropy assumes randomly generated
+characters and may overstate the strength of human-chosen passwords.
 
 ## 🎨 Example App
 
@@ -282,15 +290,16 @@ Check out the [example app](example/) for an interactive demo with all features 
 Run tests:
 
 ```bash
-flutter test
+dart test
+dart analyze lib test --fatal-infos
 ```
 
 Run tests with coverage:
 
 ```bash
-flutter test --coverage
-genhtml coverage/lcov.info -o coverage/html
-open coverage/html/index.html
+dart test --coverage=coverage
+dart pub global activate coverage
+dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
 ```
 
 ## 🤝 Contributing

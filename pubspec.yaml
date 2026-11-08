@@ -6,6 +6,9 @@ homepage: https://github.com/KathirvelChandrasekaran/word_generator
 environment:
   sdk: ">=2.19.0 <4.0.0"
 
+dependencies:
+  english_words: ^4.0.0
+
 dev_dependencies:
   test: ^1.24.0
   flutter_lints: ^2.0.0
