@@ -34,6 +34,8 @@ jobs:
         run: dart pub publish --dry-run
 
       - name: Confirm version
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
         run: |
           PACKAGE_VERSION="$(awk '$1 == "version:" { print $2; exit }' pubspec.yaml)"
           TAG_VERSION="${GITHUB_REF_NAME#v}"
