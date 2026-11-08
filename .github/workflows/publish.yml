@@ -1,12 +1,9 @@
 name: Publish to pub.dev
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Version to publish (e.g., 0.5.1)"
-        required: true
-        type: string
+  push:
+    tags:
+      - "v*"
 
 jobs:
   publish:
@@ -37,12 +34,11 @@ jobs:
         run: dart pub publish --dry-run
 
       - name: Confirm version
-        env:
-          REQUESTED_VERSION: ${{ inputs.version }}
         run: |
           PACKAGE_VERSION="$(awk '$1 == "version:" { print $2; exit }' pubspec.yaml)"
-          if [[ "$REQUESTED_VERSION" != "$PACKAGE_VERSION" ]]; then
-            printf '::error::Requested version %s does not match pubspec.yaml version %s\n' "$REQUESTED_VERSION" "$PACKAGE_VERSION"
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [[ "$TAG_VERSION" != "$PACKAGE_VERSION" ]]; then
+            printf '::error::Tag version %s does not match pubspec.yaml version %s\n' "$TAG_VERSION" "$PACKAGE_VERSION"
             exit 1
           fi
           printf 'Publishing version %s\n' "$PACKAGE_VERSION"
