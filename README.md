@@ -2,7 +2,8 @@
 
 [![pub package][pub_badge]][pub_link]
 [![License: MIT][license_badge]][license_link]
-[![Build Status](https://github.com/KathirvelChandrasekaran/word_generator/workflows/build/badge.svg)](https://github.com/KathirvelChandrasekaran/word_generator/actions)
+[![Build Status](https://github.com/KathirvelChandrasekaran/word_generator/actions/workflows/dart.yml/badge.svg)](https://github.com/KathirvelChandrasekaran/word_generator/actions/workflows/dart.yml)
+[![Tests](https://github.com/KathirvelChandrasekaran/word_generator/actions/workflows/test.yml/badge.svg)](https://github.com/KathirvelChandrasekaran/word_generator/actions/workflows/test.yml)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/kathirvel)
 
